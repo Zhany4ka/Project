@@ -1,5 +1,6 @@
 import './App.css';
 import React, { useState , useRef , useEffect } from 'react';
+import { Message } from './Message';
 function App() {
   const [sender, setSender] = useState("");
   const [text, setText] = useState("");
@@ -61,7 +62,11 @@ function App() {
             });
         });
     } else {
-        alert("Geolocation не поддерживается вашим браузером.");
+        openModal({
+          title: "Ошибка",
+          body: "Geolocation не поддерживается вашим браузером."
+
+        })
     }
 }, []);
 
@@ -186,14 +191,14 @@ useEffect(() => {
   function goToOriginalMessage(targetMessage) {
     const targetIndex = messages.findIndex(msg => msg === targetMessage);
     if (targetIndex !== -1) {
-        // Выделяем сообщение, устанавливая isTargeted в true
+
         const updatedMessages = messages.map((msg, idx) => ({
             ...msg,
             isTargeted: idx === targetIndex
         }));
         setMessages(updatedMessages);
 
-        // Убираем мигание через, например, 3 секунды (3000 миллисекунд)
+
         setTimeout(() => {
             const messagesWithoutTarget = updatedMessages.map(message => 
                 message === targetMessage ? {...message, isTargeted: false} : message
@@ -394,60 +399,6 @@ useEffect(() => {
     </div>
 );
 
-}
-
-function Message({ message, onEdit, onDelete , sender , handleReport, index , setReplyingToMessage , openModal , goToOriginalMessage}) {
-  const isCurrentUserOrAdmin = message.sender === sender || sender === "Admin";
-
-  const messageRef = useRef(null);
-  useEffect(() => {
-    if (message.isTargeted) {
-        messageRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
-}, [message.isTargeted]);
-
-
-  return (
-    <div className={`message outgoing ${message.isTargeted ? 'flashing-message' : ''}`} ref={messageRef}>
-        <span className="sender">{message.sender}:</span>
-        {message.replyTo && (
-            
-        <div className="replied-message" onClick={() => goToOriginalMessage(message.replyTo)}>
-            <span className="replied-sender">{message.replyTo.sender}: </span>
-            {message.replyTo.text}
-        </div>
-    )}
-        <span>{message.text}</span>
-        {message.file && <a href={message.file} target="_blank" rel="noreferrer" download={message.fileName}>Открыть файл</a>}
-        {isCurrentUserOrAdmin && (
-            <>
-                <button onClick={() => {
-                    openModal({
-                        title: "Редактировать сообщение",
-                        body: "Введите новый текст сообщения:",
-                        input: true,
-                        onConfirm: (inputValue) => {
-                          console.log("Новый текст сообщения:", inputValue);
-                          const newText = inputValue;
-                          if (newText !== null) onEdit(newText)
-
-                        }
-                      });
-                }}>
-                    ✎
-                </button>
-                <button onClick={() => onDelete()}>
-                    ✖
-                </button>
-            </>
-        )}
-        <button 
-    className="replybutt" 
-    onClick={() => setReplyingToMessage(message)}>
-    ⬎
-</button>
-    </div>
-);
 }
 
 export default App;
