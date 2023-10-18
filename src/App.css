@@ -1,0 +1,500 @@
+/* Ваш стиль */
+body {
+  margin: 0;
+  font: 12px/18px 'Open Sans',"Lucida Grande","Lucida Sans Unicode",Arial,Helvetica,Verdana,sans-serif;
+}
+/* ... и так далее для всех других стилей, которые вы предоставили выше */
+
+/* Интегрированный стиль для чата */
+#chatContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  font-family: 'Open Sans', sans-serif;
+}
+
+#header {
+  background-color: #0088cc;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+#messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  border: 1px solid #e3e6e8;
+  background-color: #ffffff;
+}
+
+.message {
+  padding: 10px;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  max-width: 60%;
+  line-break: anywhere;
+}
+
+.incoming {
+  background-color: #E4E6EB;
+  align-self: flex-start;
+}
+
+.outgoing {
+  background-color: #DCF8C6;
+  align-self: flex-end;
+}
+
+#inputContainer {
+  display: flex;
+  background-color: #ffffff;
+  padding: 10px;
+  border-top: 1px solid #e3e6e8;
+}
+
+#inputMessage {
+  flex: 1;
+  padding: 10px;
+  border-radius: 15px;
+  border: 1px solid #e3e6e8;
+}
+
+#sendButton {
+  background-color: #0088cc;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  padding: 10px 20px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+.message button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: 10px;
+  color: #0088cc;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.message button:hover {
+  color: #005599;
+}
+.sender {
+  font-weight: bold;
+  color: #0088cc;
+  margin-right: 5px;
+}
+.report {
+background: none;
+border: none;
+cursor: pointer;
+margin-left: 5px;
+color: #D32F2F;
+font-size: 16px;
+transition: color 0.3s ease;
+}
+
+.report:hover {
+color: #B71C1C;
+}
+.icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  font-size: 16px;
+  transition: color 0.3s ease;
+  margin: 0 5px;
+  color: #6c757d; /* Серый цвет по умолчанию для всех иконок */
+}
+
+.icon-button:hover {
+  color: #5a6268; /* Темно-серый цвет для hover состояния */
+}
+
+.icon-edit {
+  color: #007bff; /* Синий цвет для кнопки редактирования */
+}
+
+.icon-delete {
+  color: #dc3545; /* Красный цвет для кнопки удаления */
+}
+
+.icon-report {
+  color: #ffc107; /* Желтый цвет для кнопки жалобы */
+}
+/* ... ваши текущие стили ... */
+
+/* Стили для полей ввода и кнопки "Отправить" */
+#inputContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-top: 1px solid #e3e6e8;
+}
+
+#inputContainer input {
+  padding: 10px;
+  border: 1px solid #e3e6e8;
+  border-radius: 4px;
+  flex: 1;
+  margin-right: 10px;
+}
+
+#inputContainer button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#inputContainer button:hover {
+  background-color: #0056b3;
+}
+
+/* Стили для полей авторизации и регистрации */
+#authContainer {
+  width: 300px;
+  margin: 100px auto 0;  /* центрирование по вертикали и горизонтали */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  border: 1px solid #e3e6e8;
+  border-radius: 4px;  /* небольшое закругление для контейнера */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);  /* небольшая тень для выделения контейнера */
+}
+
+#authContainer input {
+  padding: 8px;  /* небольшое уменьшение отступа */
+  border: 1px solid #e3e6e8;
+  border-radius: 4px;  /* укругление углов */
+  font-size: 14px;
+}
+
+#authContainer button {
+  padding: 8px 15px;               /* небольшое изменение отступов */
+  border: none;                   /* убрать стандартные границы */
+  border-radius: 20px;            /* значительное укругление для кнопок */
+  background-color: #007bff;      /* цвет фона кнопки */
+  color: #ffffff;                 /* цвет текста кнопки */
+  cursor: pointer;                /* курсор рука при наведении */
+  transition: background-color 0.3s ease;  /* плавное изменение фона при наведении */
+}
+
+#authContainer button:hover {
+  background-color: #0056b3;      /* цвет фона кнопки при наведении */
+}
+.devToolsButton {
+  background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный чёрный цвет */
+  color: white; /* Белый цвет текста */
+  transition: opacity 0.2s;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  font-weight: bold;
+  padding: 5px 10px; /* Добавим небольшой отступ вокруг текста кнопки */
+  border-radius: 5px; /* Слегка закругляем углы кнопки */
+}
+
+.devToolsButton:hover {
+  opacity: 0.8; /* При наведении курсора делаем кнопку менее прозрачной */
+}
+
+.devToolsPanel {
+  position: absolute;
+  top: 60px;
+  right: 10px;
+  width: 300px; /* или любая другая ширина */
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.uploadFileButton {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1.5em;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+.uploadFileButton:hover {
+  color: #007BFF;  /* Меняет цвет иконки на синий при наведении */
+}
+.message a {
+  display: inline-block;
+  margin-left: 10px;
+  background-color: #007BFF;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.message a:hover {
+  background-color: #0056b3;
+}
+
+.message a:active {
+  background-color: #003d80;
+}
+.weather-widget {
+  background: linear-gradient(135deg, #e0eafc, #cfdef3);
+  padding: 10px 15px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  width: 180px;
+  font-family: 'Arial', sans-serif;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; 
+}
+
+.weather-widget:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 7px 20px rgba(0, 0, 0, 0.15); 
+}
+
+.weather-widget h3 {
+  margin: 0 0 10px;
+  color: #333;
+  font-size: 22px;
+}
+
+.weather-widget p {
+  margin: 5px 0;
+  font-size: 16px;
+  color: #555;
+}
+
+.weather-description {
+  text-transform: capitalize;
+}
+
+.weather-temperature {
+  font-weight: bold;
+  font-size: 20px;
+}
+.replying-to {
+  background-color: #f7f7f7;
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.replying-to button {
+  background: none;
+  border: none;
+  color: #9a9a9a;
+  font-size: 20px;
+  cursor: pointer;
+  line-height: 1;
+  margin-left: 8px;
+}
+
+.replying-to button:hover {
+  color: #6b6b6b;
+}
+
+.replied-message {
+  background-color: #e6e6e6;
+  padding: 7px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  margin-bottom: 6px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.03);
+}
+.replied-sender {
+  font-weight: bold;
+  margin-right: 8px;
+}
+/* Стили для модального окна */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* полупрозрачный фон */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+  width: 80%;
+  max-width: 500px;
+  padding: 20px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.modal-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.modal-body {
+  font-size: 16px;
+  color: #555;
+}
+
+.modal-input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px;
+  margin-top: 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #555;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.modal-footer button {
+  padding: 8px 15px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007BFF;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.modal-footer button:last-child {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.modal-footer button:hover {
+  background-color: #0056b3;
+}
+
+.modal-footer button:last-child:hover {
+  background-color: #bfbfbf;
+}
+
+@keyframes flashing {
+  0%   { opacity: 1; }
+  50%  { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+
+.flashing-message {
+  animation: flashing 1s 3; /* 1 секунда на каждое мигание и 3 мигания в общей сложности */
+}
+
+.attached-file {
+  display: inline-block;
+  background-color: #f2f2f2;
+  padding: 5px 10px;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+
+.remove-file-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin-left: 5px;
+}
+.logout-button {
+  background-color: #f44336;
+  color: white;
+  padding: 5px 10px;  /* Уменьшите padding для меньшего размера */
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  position: absolute;  /* Позиционирование по отношению к ближайшему родительскому элементу с position relative */
+  top: 10px;           /* Расстояние сверху */
+  right: 10px;         /* Расстояние справа */
+}
+
+.logout-button:hover {
+  background-color: #da190b;
+}
+
+/* Стили для текстовых полей ввода в панели разработчика */
+.devToolsPanel input[type="text"] {
+  width: 80%; /* Ширина поля ввода */
+  padding: 5px; /* Отступы внутри поля */
+  margin: 5px 0; /* Отступы сверху и снизу */
+  border: 1px solid #ccc; /* Граница поля ввода */
+  border-radius: 3px; /* Скругление углов */
+}
+
+/* Стили для чекбоксов и их меток в панели разработчика */
+.devToolsPanel label {
+  display: block; /* Разместите метку и чекбокс на разных строках */
+  margin: 7px 0; /* Отступы сверху и снизу */
+}
+
+.devToolsPanel input[type="checkbox"] {
+  margin-right: 5px; /* Отступ справа от чекбокса */
+}
+
+/* Стили для кнопок в панели разработчика */
+.devToolsPanel button {
+  padding: 7px 15px; /* Отступы внутри кнопки */
+  background-color: #007bff; /* Цвет фона кнопки */
+  color: white; /* Цвет текста кнопки */
+  border: none; /* Убрать границу */
+  border-radius: 3px; /* Скругление углов */
+  cursor: pointer; /* Изменение курсора при наведении на кнопку */
+  margin-top: 10px; /* Отступ сверху */
+}
+
+.devToolsPanel button:hover {
+  background-color: #0056b3; /* Цвет фона кнопки при наведении */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
