@@ -131,12 +131,27 @@ useEffect(() => {
     const fetchWeatherByCoordinates = async () => {
         try {
             const apiWeather = "630191d7eb42751452a35aa24e1f0244"; //630191d7eb42751452a35aa24e1f0244
+
             
             // Получить погоду напрямую по координатам
-            const responseWeather = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&units=metric&lang=ru&APPID=${apiWeather}`);
-            const weatherData = await responseWeather.json();
+            
+            const responseWeather = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&units=metric&lang=ru&appid=${apiWeather}`);
 
-            setWeatherData(weatherData);
+            const weatherData = await responseWeather.json();
+            console.log(location.latitude, location.longitude)
+            console.log(weatherData);// Данные о погоде
+            if (weatherData && weatherData.main) {  // Проверка на наличие данных о погоде
+              setWeatherData(weatherData);
+          } else {
+              openModal({
+                title: "Ошибка 401",
+                body: "введите API ключ для openweathermap"
+              })
+              console.error("Недостаточно данных для отображения погоды.");
+          }
+      
+
+            //setWeatherData(weatherData);
             setLoading(false);
         } catch (error) {
             console.error("Ошибка при получении данных о погоде:", error);
@@ -183,11 +198,48 @@ useEffect(() => {
         }, 3000);
     }
 }
+const fetchWeatherByCity = async (cityName) => {
+  if (!cityName || !cityName.trim()) {
+    alert("Введите название города на английском")
+    return;
+}
+    try {
+      const apiWeather = "630191d7eb42751452a35aa24e1f0244";
+      
+      const responseWeather = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&lang=ru&appid=${apiWeather}`);
+      const weatherData = await responseWeather.json();
+      if (weatherData && weatherData.main) {  // Проверка на наличие данных о погоде
+        setWeatherData(weatherData);
+    } else {
+        openModal({
+          title: "Ошибка 404",
+          body: "Название города недействительно , его либо не существует в базе данных openweathermap , либо вы ввели город не на английском . Попробуйте еще раз"
+        })
+        console.error("Недостаточно данных для отображения погоды.");
+    }
 
-
+      //setWeatherData(weatherData);
+      setLoading(false);
+  }  catch (error) {
+      console.error("Ошибка при получении данных о погоде:", error);
+      setLoading(false);
+  }
+ 
 
   
+  }
 
+
+
+
+const openCityModal = () => {
+  openModal({
+      title: 'Введите город',
+      body: 'Пожалуйста, введите название города на английском:',
+      input: true,
+      onConfirm: (cityName) => fetchWeatherByCity(cityName)
+  });
+};
 
 
 
@@ -227,11 +279,27 @@ useEffect(() => {
         loading ? (
             <div>Загрузка данных о погоде...</div>
         ) : weatherData ? (
-            <div>
-                <h3>Погода в {weatherData.name}</h3>
-                <p className="weather-temperature">Температура: {Math.round(weatherData.main.temp)}°C</p>
-                <p className="weather-description">Описание: {weatherData.weather[0].description}</p>
-            </div>
+          <div>
+          <div className="weather-header">
+              <h3>Погода в {weatherData.name}</h3>
+              <button className="weather-change-btn" onClick={openCityModal}>!</button>
+          </div>
+      
+          <div className="weather-info">
+          
+              <img 
+                  src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`} 
+                  alt={weatherData.weather[0].description} 
+                  className="weather-icon" 
+              />
+      
+              <span className="weather-temperature">🌡 {Math.round(weatherData.main.temp)}°C</span>
+              <span className="weather-humidity">Влажность: {weatherData.main.humidity}%</span>
+              <span className="weather-wind">Ветер: {weatherData.wind.speed} м/с</span>
+              <span className="weather-pressure">Давление: {weatherData.main.pressure} гПа</span>
+          </div>
+      </div>
+      
         ) : (
             <div>Не удалось загрузить данные о погоде.</div>
         )

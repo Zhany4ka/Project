@@ -1,24 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect } from 'react';
 import AuthComponent from './AuthComponent';
 import ChatComponent from './ChatComponent';
 import {  Route, Routes, Navigate } from 'react-router-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import './App.css';
 function App() {
-    const [isAuthenticated, setAuthenticated] = useState(false);
-    const [currentUser, setCurrentUser] = useState("");
-  
+  const [isAuthenticated, setAuthenticated] = useState(localStorage.getItem("isAuthenticated") === "true");
+  const [currentUser, setCurrentUser] = useState(localStorage.getItem("currentUser") || "");
+
+  useEffect(() => {
+    // Обновите localStorage каждый раз, когда состояние аутентификации меняется
+    localStorage.setItem("isAuthenticated", isAuthenticated);
+    localStorage.setItem("currentUser", currentUser);
+  }, [isAuthenticated, currentUser]);
+
     const handleLogin = (username, password) => {
     setAuthenticated(true);
     setCurrentUser(username);
-      // Тут ваша логика авторизации...
     };
   
     const handleRegister = (username, password) => {
     setAuthenticated(true);
     setCurrentUser(username);
-    alert('Вы успешно зарегистрированы!');
-      // Тут ваша логика регистрации...
     };
   
     return (
@@ -37,7 +40,11 @@ function App() {
               path="/chat" 
               element={
                 isAuthenticated ? 
-                 <ChatComponent currentUser={currentUser} onLogout={() => setAuthenticated(false)} /> :
+                <ChatComponent currentUser={currentUser} onLogout={() => {
+                  setAuthenticated(false); 
+                  setCurrentUser("");
+                  localStorage.removeItem("currentUser");
+                }} /> :
                   
                   <Navigate to="/login" />
               }
