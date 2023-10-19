@@ -170,13 +170,15 @@ color: #B71C1C;
   border: 1px solid #e3e6e8;
   border-radius: 4px;  /* небольшое закругление для контейнера */
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);  /* небольшая тень для выделения контейнера */
+  text-align: center;
 }
 
 #authContainer input {
-  padding: 8px;  /* небольшое уменьшение отступа */
+  padding: 8px 8px 8px 30px;  /* top right bottom left */
   border: 1px solid #e3e6e8;
-  border-radius: 4px;  /* укругление углов */
+  border-radius: 4px;
   font-size: 14px;
+  width: 100%; /* также установите ширину на 100%, чтобы заполнить родительский контейнер */
 }
 
 #authContainer button {
@@ -192,6 +194,35 @@ color: #B71C1C;
 #authContainer button:hover {
   background-color: #0056b3;      /* цвет фона кнопки при наведении */
 }
+#authContainer h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+.inputWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.inputWrapper::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background-color: #e3e6e8;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 15px;  /* небольшая коррекция для отступа иконки */
+  z-index: 2;
+}
+
 .devToolsButton {
   background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный чёрный цвет */
   color: white; /* Белый цвет текста */
@@ -524,6 +555,36 @@ color: #B71C1C;
 .devToolsPanel button:hover {
   background-color: #0056b3; /* Цвет фона кнопки при наведении */
 }
+.weather-warning {
+  margin-left: 10px;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: default; /* чтобы кнопка не нажималась */
+  transition: background-color 0.3s;
+}
+
+.weather-warning.cold {
+  background-color: rgba(0, 0, 255, 0.7); /* Синий фон для "холодной" кнопки */
+}
+
+.weather-warning.cold:hover {
+  background-color: rgba(0, 0, 128, 0.7); /* Темно-синий при наведении */
+}
+
+.weather-warning.hot {
+  background-color: red; /* Красный фон для "жаркой" кнопки */
+}
+
+.weather-warning.hot:hover {
+  background-color: darkred; /* Темно-красный при наведении */
+}
+
 
 
 

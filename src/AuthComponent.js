@@ -24,22 +24,30 @@ function AuthComponent({ onLogin, onRegister }) {
 
   return (
     <div id="authContainer">
-      <input
-        type="text"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        placeholder="Имя пользователя"
-      />
-      <input
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="Пароль"
-      />
+      <h2>Добро пожаловать!</h2>
+      <div className="inputWrapper">
+        <span className="inputIcon">👤</span>
+        <input
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          placeholder="Имя пользователя"
+        />
+      </div>
+      <div className="inputWrapper">
+        <span className="inputIcon">🔑</span>
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Пароль"
+        />
+      </div>
       <button onClick={handleLoginClick}>Войти</button>
       <button onClick={handleRegisterClick}>Зарегистрироваться</button>
     </div>
-  );
+);
+
 }
 
 export default AuthComponent;

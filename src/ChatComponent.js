@@ -45,6 +45,11 @@ function ChatComponent({ currentUser , onLogout}) {
   const [customModalBody, setCustomModalBody] = useState("");
   const [customModalInput, setCustomModalInput] = useState(false);
 
+ 
+
+
+ 
+
   const [modalInputValue, setModalInputValue] = useState("");
   useEffect(() => {
     setSender(currentUser);
@@ -74,6 +79,8 @@ function ChatComponent({ currentUser , onLogout}) {
         })
     }
 }, []);
+
+
 
 
 
@@ -209,7 +216,7 @@ const fetchWeatherByCity = async (cityName) => {
       
       const responseWeather = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&lang=ru&appid=${apiWeather}`);
       const weatherData = await responseWeather.json();
-      if (weatherData && weatherData.main) {  // Проверка на наличие данных о погоде
+      if (weatherData && weatherData.main) {
         setWeatherData(weatherData);
     } else {
         openModal({
@@ -241,6 +248,18 @@ const openCityModal = () => {
       onConfirm: (cityName) => fetchWeatherByCity(cityName)
   });
 };
+
+const handleKeyPress = (event) => {
+  if (event.key === 'Enter' && !event.shiftKey) {
+      handleSend();
+      event.preventDefault(); // Предотвратить добавление новой строки при нажатии Enter
+  }
+};
+
+
+
+
+
 
 
 
@@ -298,6 +317,10 @@ const openCityModal = () => {
               <span className="weather-humidity">Влажность: {weatherData.main.humidity}%</span>
               <span className="weather-wind">Ветер: {weatherData.wind.speed} м/с</span>
               <span className="weather-pressure">Давление: {weatherData.main.pressure} гПа</span>
+              {weatherData.main.temp <= 0 && <button className="weather-warning cold">❄️</button>}
+              {weatherData.main.temp >= 30 && <button className="weather-warning hot">🔥</button>}
+
+
           </div>
       </div>
       
@@ -414,6 +437,7 @@ const openCityModal = () => {
                         type="text"
                         value={text}
                         onChange={(e) => setText(e.target.value)}
+                        onKeyPress={handleKeyPress}
                         placeholder="Введите сообщение..."
                     />
                     <button onClick={handleSend}>➤</button>
