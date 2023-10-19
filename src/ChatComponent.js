@@ -10,6 +10,7 @@ function ChatComponent({ currentUser , onLogout}) {
     setAuthenticated(false);
     setSender("");
 };
+  // eslint-disable-next-line no-unused-vars
   const [authenticated, setAuthenticated] = useState(false);
 
   //const [username, setUsername] = useState("");

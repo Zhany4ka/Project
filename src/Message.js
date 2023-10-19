@@ -22,7 +22,7 @@ export function Message({ message, onEdit, onDelete, sender, handleReport, index
         </div>
       )}
       <span>{message.text}</span>
-      {message.file && <a href={message.file} target="_blank" rel="noreferrer" download={message.fileName}>Открыть файл</a>}
+      {message.file && <a href={message.file} target="_blank" rel="noreferrer" download={message.fileName}>📎</a>}
       {isCurrentUserOrAdmin && (
         <>
           <button onClick={() => {
