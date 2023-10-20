@@ -88,7 +88,8 @@ function ChatComponent({ currentUser , onLogout}) {
       setMessages(messages.map(msg => ({ ...msg, isTargeted: false })));
       if ((isSendingAllowed || currentUser === "Admin") && sender.trim() && text.trim() && (isFileSendingAllowed || !file)) {
           const newMessage = { sender: sender.trim(), 
-            text: text.trim() , 
+            text: text.trim() ,
+            timestamp: new Date().toISOString(), 
             reported: false ,
             file: file ? URL.createObjectURL(file) : null,
             fileName: file ? file.name : null ,

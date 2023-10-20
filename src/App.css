@@ -626,6 +626,39 @@ color: #B71C1C;
       transform: translateY(0);
   }
 }
+.githubLink {
+  margin-top: 20px; /* Отступ сверху для разделения ссылки с другими элементами */
+  display: inline-flex; /* Делаем ссылку блоком, но позволяем SVG быть флекс-элементом */
+  align-items: center; /* Центрируем SVG по вертикали */
+  padding: 5px 10px; /* Добавляем небольшой отступ вокруг SVG для удобства клика */
+  border-radius: 5px; /* Слегка закругляем углы ссылки */
+  transition: background-color 0.2s; /* Плавный переход цвета фона при наведении */
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #f9f9f9;
+  padding: 10px 0;
+  text-align: center;
+  border-top: 1px solid #e3e6e8;
+}
+
+.footer p {
+  margin: 5px 0;
+  font-size: 12px;
+}
+.message-timestamp {
+  font-size: 0.8rem; /* Уменьшенный размер шрифта */
+  margin-left: 8px; /* Отступ слева для разделения текста сообщения и временной метки */
+  color: #888; /* Серый цвет для временной метки */
+  vertical-align: top; /* Устанавливаем вертикальное выравнивание по верху */
+}
+
+
+
 
 
 

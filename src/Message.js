@@ -29,6 +29,17 @@ export function Message({ message, onEdit, onDelete, sender, handleReport, index
     return () => window.removeEventListener('click', closeContextMenu);
   }, []);
 
+  const formatTimestamp = (timestamp) => {
+    const date = new Date(timestamp);
+
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const seconds = String(date.getSeconds()).padStart(2, '0');
+
+    return `${hours}:${minutes}:${seconds}`;
+};
+
+
 
   return (
     <div className={`message outgoing ${message.isTargeted ? 'flashing-message' : ''}`} ref={messageRef} onContextMenu={handleRightClick}>
@@ -44,6 +55,7 @@ export function Message({ message, onEdit, onDelete, sender, handleReport, index
       <span>{message.text}</span>
 
       {message.file && <a href={message.file} target="_blank" rel="noreferrer" download={message.fileName}>📎</a>}
+      <span className="message-timestamp">{formatTimestamp(message.timestamp)}</span>
       
       {showContextMenu && (
         <div
