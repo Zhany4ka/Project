@@ -1,4 +1,3 @@
-// ChatComponent.js
 import { Message } from './Message';
 import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
@@ -12,13 +11,11 @@ function ChatComponent({ currentUser , onLogout}) {
 };
   // eslint-disable-next-line no-unused-vars
   const [authenticated, setAuthenticated] = useState(false);
-
-  //const [username, setUsername] = useState("");
+;
   const [messages, setMessages] = useState(JSON.parse(localStorage.getItem('all_messages')) || []);
   const [showDevTools, setShowDevTools] = useState(false);
-  //const [currentUser] = useState(localStorage.getItem("username") || "");
   const [isSendingAllowed, setSendingAllowed] = useState(
-    localStorage.getItem("isSendingAllowed") !== "false" // По умолчанию true, если значение не установлено
+    localStorage.getItem("isSendingAllowed") !== "false" 
 );
   const [isFileSendingAllowed, setFileSendingAllowed] = useState(
     localStorage.getItem("isFileSendingAllowed") !== "false"
@@ -44,26 +41,13 @@ function ChatComponent({ currentUser , onLogout}) {
   const [customModalTitle, setCustomModalTitle] = useState("");
   const [customModalBody, setCustomModalBody] = useState("");
   const [customModalInput, setCustomModalInput] = useState(false);
-
- 
-
-
- 
-
   const [modalInputValue, setModalInputValue] = useState("");
   useEffect(() => {
     setSender(currentUser);
   }, [currentUser]);
 
-
-
-
-
-
-
-
-  
   useEffect(() => {
+    //Определение города по координатам 
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
             setLocation({
@@ -79,10 +63,6 @@ function ChatComponent({ currentUser , onLogout}) {
         })
     }
 }, []);
-
-
-
-
 
   const handleSend = () => {
       setMessages(messages.map(msg => ({ ...msg, isTargeted: false })));
@@ -131,8 +111,6 @@ function ChatComponent({ currentUser , onLogout}) {
       localStorage.setItem('all_messages', JSON.stringify(updatedMessages));
       setMessages(updatedMessages);
   };
-
-
   const toggleDevTools = () => {
     setShowDevTools(!showDevTools);
 };
@@ -158,9 +136,6 @@ useEffect(() => {
               })
               console.error("Недостаточно данных для отображения погоды.");
           }
-      
-
-            //setWeatherData(weatherData);
             setLoading(false);
         } catch (error) {
             console.error("Ошибка при получении данных о погоде:", error);
@@ -213,8 +188,7 @@ const fetchWeatherByCity = async (cityName) => {
     return;
 }
     try {
-      const apiWeather = "630191d7eb42751452a35aa24e1f0244";
-      
+      const apiWeather = "630191d7eb42751452a35aa24e1f0244";   
       const responseWeather = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&lang=ru&appid=${apiWeather}`);
       const weatherData = await responseWeather.json();
       if (weatherData && weatherData.main) {
@@ -226,21 +200,12 @@ const fetchWeatherByCity = async (cityName) => {
         })
         console.error("Недостаточно данных для отображения погоды.");
     }
-
-      //setWeatherData(weatherData);
       setLoading(false);
   }  catch (error) {
       console.error("Ошибка при получении данных о погоде:", error);
       setLoading(false);
   }
- 
-
-  
   }
-
-
-
-
 const openCityModal = () => {
   openModal({
       title: 'Введите город',
@@ -249,21 +214,13 @@ const openCityModal = () => {
       onConfirm: (cityName) => fetchWeatherByCity(cityName)
   });
 };
-
+//Убирает необходимость нажимать на кнопку для отправки сообщений (Достаточно нажать Enter)
 const handleKeyPress = (event) => {
   if (event.key === 'Enter' && !event.shiftKey) {
       handleSend();
-      event.preventDefault(); // Предотвратить добавление новой строки при нажатии Enter
+      event.preventDefault(); 
   }
 };
-
-
-
-
-
-
-
-
   return (
         <div id="chatContainer">
             <div id="header">Чат</div>
@@ -304,34 +261,26 @@ const handleKeyPress = (event) => {
           <div className="weather-header">
               <h3>Погода в {weatherData.name}</h3>
               <button className="weather-change-btn" onClick={openCityModal}>!</button>
-          </div>
-      
-          <div className="weather-info">
-          
+          </div>     
+          <div className="weather-info">     
               <img 
                   src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`} 
                   alt={weatherData.weather[0].description} 
                   className="weather-icon" 
               />
-      
               <span className="weather-temperature">🌡 {Math.round(weatherData.main.temp)}°C</span>
               <span className="weather-humidity">Влажность: {weatherData.main.humidity}%</span>
               <span className="weather-wind">Ветер: {weatherData.wind.speed} м/с</span>
               <span className="weather-pressure">Давление: {weatherData.main.pressure} гПа</span>
               {weatherData.main.temp <= 0 && <button className="weather-warning cold">❄️</button>}
               {weatherData.main.temp >= 30 && <button className="weather-warning hot">🔥</button>}
-
-
           </div>
-      </div>
-      
+      </div>     
         ) : (
             <div>Не удалось загрузить данные о погоде.</div>
         )
     }
 </div>
-
-
             {showDevTools && (
             <div className="devToolsPanel">
               <h3>Настройки разработчика</h3>
@@ -390,13 +339,8 @@ const handleKeyPress = (event) => {
         onConfirm: null
       });
     }}>Открыть модальное окно</button>
-
-
-              {/* Здесь могут быть ваши инструменты и настройки */}
             </div>
-            )}
-        
-          
+            )}   
             <>
             <>
         <button className="logout-button" onClick={handleLogout}>Выход</button>
@@ -447,12 +391,7 @@ const handleKeyPress = (event) => {
                 <button className="devToolsButton" onClick={toggleDevTools}>D</button>
             )}
             </>
-           
-        
     </div>
 );
-
-
 }
-
 export default ChatComponent;

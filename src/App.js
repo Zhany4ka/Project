@@ -31,8 +31,7 @@ function App() {
               path="/login" 
               element={
                 !isAuthenticated ? 
-                  <AuthComponent onLogin={handleLogin} onRegister={handleRegister} /> :
-                  
+                  <AuthComponent onLogin={handleLogin} onRegister={handleRegister} /> :               
                   <Navigate to="/chat" />
               }
             />
@@ -44,16 +43,13 @@ function App() {
                   setAuthenticated(false); 
                   setCurrentUser("");
                   localStorage.removeItem("currentUser");
-                }} /> :
-                  
+                }} /> :          
                   <Navigate to="/login" />
               }
             />
             <Route path="*" element={<Navigate to={isAuthenticated ? "/chat" : "/login"} />} />
           </Routes>
         </Router>
-      );
-      
+      );     
   }
-  
   export default App;

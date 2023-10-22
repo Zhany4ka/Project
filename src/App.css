@@ -541,19 +541,19 @@ color: #B71C1C;
   margin-right: 5px; /* Отступ справа от чекбокса */
 }
 
-/* Стили для кнопок в панели разработчика */
+
 .devToolsPanel button {
-  padding: 7px 15px; /* Отступы внутри кнопки */
-  background-color: #007bff; /* Цвет фона кнопки */
-  color: white; /* Цвет текста кнопки */
-  border: none; /* Убрать границу */
-  border-radius: 3px; /* Скругление углов */
-  cursor: pointer; /* Изменение курсора при наведении на кнопку */
-  margin-top: 10px; /* Отступ сверху */
+  padding: 7px 15px; 
+  background-color: #007bff; 
+  color: white; 
+  border: none; 
+  border-radius: 3px; 
+  cursor: pointer; 
+  margin-top: 10px; 
 }
 
 .devToolsPanel button:hover {
-  background-color: #0056b3; /* Цвет фона кнопки при наведении */
+  background-color: #0056b3; 
 }
 .weather-warning {
   margin-left: 10px;
@@ -565,28 +565,28 @@ color: #B71C1C;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: default; /* чтобы кнопка не нажималась */
+  cursor: default; 
   transition: background-color 0.3s;
 }
 
 .weather-warning.cold {
-  background-color: rgba(0, 0, 255, 0.7); /* Синий фон для "холодной" кнопки */
+  background-color: rgba(0, 0, 255, 0.7); 
 }
 
 .weather-warning.cold:hover {
-  background-color: rgba(0, 0, 128, 0.7); /* Темно-синий при наведении */
+  background-color: rgba(0, 0, 128, 0.7); 
 }
 
 .weather-warning.hot {
-  background-color: red; /* Красный фон для "жаркой" кнопки */
+  background-color: red; 
 }
 
 .weather-warning.hot:hover {
-  background-color: darkred; /* Темно-красный при наведении */
+  background-color: darkred; 
 }
 .contextMenu {
   animation: slideIn 0.2s forwards;
-  padding: 10px 0;  /* увеличенные отступы для более "воздушного" вида */
+  padding: 10px 0;  
   position: absolute;
   border: 1px solid #e3e6e8;
   background-color: #ffffff;
@@ -599,10 +599,10 @@ color: #B71C1C;
   gap: 5px;
 }
 .contextMenu button {
-  box-sizing: border-box; /* Это гарантирует, что padding и border включены в общую ширину элемента */
-  width: 100%; /* Задает ширину кнопки равной ширине родительского контейнера */
-  padding: 8px 15px;  /* увеличенные отступы для более "воздушного" вида */
-  transition: background-color 0.2s ease-in-out;  /* плавное изменение фона при наведении */
+  box-sizing: border-box; 
+  width: 100%; 
+  padding: 8px 15px;  
+  transition: background-color 0.2s ease-in-out;  
   background: none;
   border: none;
   cursor: pointer;
@@ -627,12 +627,12 @@ color: #B71C1C;
   }
 }
 .githubLink {
-  margin-top: 20px; /* Отступ сверху для разделения ссылки с другими элементами */
-  display: inline-flex; /* Делаем ссылку блоком, но позволяем SVG быть флекс-элементом */
-  align-items: center; /* Центрируем SVG по вертикали */
-  padding: 5px 10px; /* Добавляем небольшой отступ вокруг SVG для удобства клика */
-  border-radius: 5px; /* Слегка закругляем углы ссылки */
-  transition: background-color 0.2s; /* Плавный переход цвета фона при наведении */
+  margin-top: 20px; 
+  display: inline-flex; 
+  align-items: center; 
+  padding: 5px 10px; 
+  border-radius: 5px; 
+  transition: background-color 0.2s; 
 }
 
 .footer {
@@ -656,22 +656,3 @@ color: #B71C1C;
   color: #888; /* Серый цвет для временной метки */
   vertical-align: top; /* Устанавливаем вертикальное выравнивание по верху */
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

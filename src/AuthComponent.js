@@ -3,7 +3,6 @@ import './App.css';
 function AuthComponent({ onLogin, onRegister }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
   const handleLoginClick = () => {
     const storedPassword = localStorage.getItem(`user_${username}`);
     if (storedPassword && storedPassword === password) {
@@ -12,7 +11,6 @@ function AuthComponent({ onLogin, onRegister }) {
       alert('Неправильный логин или пароль');
     }
   };
-
   const handleRegisterClick = () => {
     if (localStorage.getItem(`user_${username}`)) {
       alert('Это имя пользователя уже занято');
@@ -21,7 +19,6 @@ function AuthComponent({ onLogin, onRegister }) {
       onRegister(username); // Передаем имя пользователя в функцию-коллбэк
     }
   };
-
   return (
     <div id="authContainer">
       <h2>Добро пожаловать!</h2>
@@ -55,7 +52,5 @@ function AuthComponent({ onLogin, onRegister }) {
     </div>
     </div>
 );
-
 }
-
 export default AuthComponent;

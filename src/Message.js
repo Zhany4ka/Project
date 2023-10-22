@@ -1,62 +1,48 @@
 import React, { useRef, useEffect , useState} from 'react';
 
-export function Message({ message, onEdit, onDelete, sender, handleReport, index, setReplyingToMessage, openModal, goToOriginalMessage }) {
+export function Message({ message, onEdit, onDelete, sender, setReplyingToMessage, openModal, goToOriginalMessage }) {
   // eslint-disable-next-line
   const isCurrentUserOrAdmin = message.sender === sender || sender === "Admin";
-
   const messageRef = useRef(null);
   useEffect(() => {
     if (message.isTargeted) {
       messageRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   }, [message.isTargeted]);
-
   const [showContextMenu, setShowContextMenu] = useState(false);
   const [contextMenuPosition, setContextMenuPosition] = useState({ x: 0, y: 0 });
-
   const handleRightClick = (event) => {
     event.preventDefault();
     setShowContextMenu(true);
     setContextMenuPosition({ x: event.clientX, y: event.clientY });
   };
-
   const closeContextMenu = () => {
     setShowContextMenu(false);
   };
-
   useEffect(() => {
     window.addEventListener('click', closeContextMenu);
     return () => window.removeEventListener('click', closeContextMenu);
   }, []);
-
+  //Форматирование времени 
   const formatTimestamp = (timestamp) => {
     const date = new Date(timestamp);
-
     const hours = String(date.getHours()).padStart(2, '0');
     const minutes = String(date.getMinutes()).padStart(2, '0');
     const seconds = String(date.getSeconds()).padStart(2, '0');
-
     return `${hours}:${minutes}:${seconds}`;
 };
-
-
-
   return (
     <div className={`message outgoing ${message.isTargeted ? 'flashing-message' : ''}`} ref={messageRef} onContextMenu={handleRightClick}>
       <span className="sender">{message.sender}:</span>
-
       {message.replyTo && (
         <div className="replied-message" onClick={() => goToOriginalMessage(message.replyTo)}>
           <span className="replied-sender">{message.replyTo.sender}: </span>
           {message.replyTo.text}
         </div>
       )}
-
       <span>{message.text}</span>
-
       {message.file && <a href={message.file} target="_blank" rel="noreferrer" download={message.fileName}>📎</a>}
-      <span className="message-timestamp">{formatTimestamp(message.timestamp)}</span>
-      
+      <span className="message-timestamp">{formatTimestamp(message.timestamp)}</span>     
       {showContextMenu && (
         <div
           className="contextMenu"
@@ -99,6 +85,4 @@ export function Message({ message, onEdit, onDelete, sender, handleReport, index
       )}
     </div>
   );
-
-
 }
